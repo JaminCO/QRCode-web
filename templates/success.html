@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Download QRCODE</title>
+</head>
+<style>
+    .container{
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      align-items:center
+    }
+    .img{
+    width:40%;
+    }
+</style>
+<body>
+    <h1 class="container">Download your QRCODE image</h1>
+    <div class="container">
+    <button><a href="{{url_for('static', filename=filename)}}" download><i fa-fa-download></i>DOWNLOAD</a></button>
+    <img class="img" style=" " src="{{url_for('static', filename=filename)}}">
+    </div>
+</body>
+</html>

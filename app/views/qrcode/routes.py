@@ -3,11 +3,12 @@ from app.models import User
 from flask_login import current_user
 
 import qrcode
-import random, datetime
+import random, datetime, os
 
 qrcode_blueprint = Blueprint("qrcode", __name__, url_prefix="/qrcode",
                         template_folder="templates", static_folder="static")
 
+GENERATED_QR_DIR = "generated_QR/" # relative to the 'static' directory
 
 def filename_gen():
     rint = random.randint(4201, 9999)
@@ -25,7 +26,10 @@ def create(message, name):
     qr.add_data(data)
     qr.make(fit = True)
     img = qr.make_image(fill="black",back_color = "white")
-    img.save("app/static/"+name)
+
+    if not os.path.exists(f"app/static/{GENERATED_QR_DIR}"):
+        os.makedirs(f"app/static/{GENERATED_QR_DIR}")
+    img.save("app/static/" + GENERATED_QR_DIR + name)    
 
 @qrcode_blueprint.route("/generate", methods=["POST", "GET"])
 def generate():
@@ -41,7 +45,8 @@ def generate():
         else:
             
             create(message=message, name=name)
-            return render_template("success.html", filename=name)
+            return render_template(
+                "success.html",filename=GENERATED_QR_DIR + name)
 
 @qrcode_blueprint.route("/api/generate/<message>", methods=["POST", "GET"])
 def generate_api(message):

@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block title %} QR Code Generator {% endblock title %}
+{% block styles %}
+<link rel="stylesheet" href="{{url_for('.static', filename='css/home.css')}}"> 
+{% endblock styles %}
+{% block scripts %} 
+{% endblock scripts %}
+
+{% block content %}
+
+<h1>Welcome to QR-ONLINE</h1>
+<p>Generate a QRCode online with our wonderful webapp</p>
+<h6 class="welcome">User:<span class="username">
+    {% if current_user.is_authenticated %}
+        {{- current_user.username -}}
+    {% else %}
+        Guest
+    {%- endif -%}
+</span></h6>
+<div class="top-bar">
+    <form id="login-form" action="{{url_for('auth.login')}}">
+    </form>
+    <form id="logout-form" action="{{url_for('auth.logout')}}"></form>
+    </form>
+    {% if current_user.is_anonymous %}
+    <button type="submit" form="login-form" class="btn btn-primary">Get Started</button> 
+    {% else %} 
+        <button type="sumbit" form="generate-qr-view" class="btn btn-primary">Generate QR Code</button>
+    {% endif %}
+    {% if current_user.is_authenticated %}
+    <button type="submit" form="logout-form" class="btn btn-primary">Logout</button> 
+    {% endif %}
+    <br><br>
+    <p><small>Created by Jtechlabs</small></p>
+</div>
+
+<form id="generate-qr-view" action="{{url_for('qrcode.generate')}}"></form>
+</form>
+
+{% endblock content %}

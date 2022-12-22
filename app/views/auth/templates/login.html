@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Login
+{% endblock title %}
+
+{% block styles %}
+<link rel="stylesheet" href="{{url_for('.static', filename='css/auth.css')}}">
+{% endblock styles %}
+
+{% block scripts %}
+{% endblock scripts %}
+
+{% block content %}
+
+<form action="{{url_for('auth.login')}}" method="POST">
+    {{ form.hidden_tag() }}
+    <h1>Login</h1> <br>
+    {{form.username.label}} <br>
+    {{form.username}} <br><br>
+    {{form.password.label}} <br>
+    {{form.password}} <br><br>
+    {{form.submit}}
+    {{form.remember_me(checked=True)}}
+    {{form.remember_me.label}} <br>
+    <p>Don't have an account? <a href="{{url_for('auth.register')}}">Register Here</a></p>
+    {% if form.username.errors %}
+        {% for error in form.username.errors %}
+            <span class="error">{{error}}</span>
+        {% endfor %}
+    {% endif %}
+    <br>
+    <a href="{{url_for('home.homepage')}}">Homepage</a>
+</form>
+{% endblock content %}

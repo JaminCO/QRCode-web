@@ -40,7 +40,6 @@ If running via a remote database (e.g a remote postgresql), just do:
 
 ## Run the App
 After configuring the environment variables and preparing the database, run the
-app with either of the following commands:
+app with this command:
 
-- __python main.py__    OR,
-- __flask run__
+__python main.py__

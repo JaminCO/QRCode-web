@@ -5,7 +5,7 @@ from flask import Flask, redirect, url_for
 from .extensions import db, migrate, login_manager, bcrypt
 
 # import variables for configuring flask shell context
-from .models import User
+from .models import User, QRcode
 from .config import config
 
 # import blueprints
@@ -36,7 +36,13 @@ def create_app(app_config):
     # set automatic imports while running app with flask shell
     @app.shell_context_processor
     def load_in_shell():
-        return dict(db=db, User=User, config=config, create_app=create_app)
+        return dict(
+            db=db,
+            User=User,
+            QRcode=QRcode,
+            config=config,
+            create_app=create_app
+            )
 
 
     # register blueprints

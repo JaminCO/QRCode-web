@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, request, redirect, flash
-from app.models import User
+from app.models import db, User, QRcode
 from flask_login import current_user
 
 import qrcode
@@ -42,11 +42,17 @@ def generate():
         if message == "":
             flash('Cannot be empty', 'error')
             return render_template("generate.html")
-        else:
-            
+        else:            
             create(message=message, name=name)
+
+            storage_path = GENERATED_QR_DIR + name
+            qr_code = QRcode(
+                user_id=current_user.id, storage_path=storage_path)
+            db.session.add(qr_code)
+            db.session.commit()
+
             return render_template(
-                "success.html",filename=GENERATED_QR_DIR + name)
+                "success.html",filename=storage_path)
 
 @qrcode_blueprint.route("/api/generate/<message>", methods=["POST", "GET"])
 def generate_api(message):

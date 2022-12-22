@@ -130,3 +130,5 @@ dmypy.json
 
 # output files
 app/static/*.png
+generated_QR
+

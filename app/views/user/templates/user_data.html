@@ -13,6 +13,10 @@
 <h3>Your generated QR Codes</h3>
 
 <div class="qr-container">
+{% if not user_qr_codes %}
+<p>You don't have any saved QRcodes. <a href="{{url_for('qrcode.generate')}}">Generate</a> a new QRcode to see it here.</p>
+{% endif %}
+
 {% for qrcode in user_qr_codes %}
     <img src="{{url_for('static', filename=qrcode.storage_path)}}" alt="QRcode - {{qrcode.storage_path}}">
 {% endfor%}

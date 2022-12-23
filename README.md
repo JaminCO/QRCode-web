@@ -28,7 +28,8 @@ FLASK_APP=main.py
  If running locally via sqlite, open your terminal in the project root directory
  and run these commands:
 
-- __flask db init__     (creates a new sqlite database if none exists)
+- __flask db init__     (ONLY run this if there is no existing "migrations" directory. Creates a new sqlite database if none exists)
+
 - __flask db migrate -m "initial migration"__   (creates migration settings)
 - __flask db upgrade__  (applies the migration settings to the database)
 

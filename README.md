@@ -38,8 +38,22 @@ If running via a remote database (e.g a remote postgresql), just do:
 - __flask db upgrade__  (applies the migration settings to the database)
 
 
+## Set appropriate environment (development/production)
+Check that the app is set to the desired running environment to ensure that
+the proper settings from the config/.env files are applied, such as which
+database (dev or production database) to use. To set the environment to be
+used, open the project entry file (main.py) and set the appropriate configuration
+string on the create_app line.
+
+- For development environment, use:
+    flask_app = create_app(config["development"])
+
+- For production environment, use:
+    flask_app = create_app(config["production"])
+
+
 ## Run the App
-After configuring the environment variables and preparing the database, run the
-app with this command:
+After configuring the environment variables and preparing the database, and the
+appropriate running environment has been set, run the app with this command:
 
 __python main.py__

@@ -1,0 +1,12 @@
+.qr-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 20px;
+    justify-content: center;
+}
+
+.qr-container img {
+    width: 300px;
+}
+

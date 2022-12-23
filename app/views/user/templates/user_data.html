@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block title %} User Data {% endblock title %}
+{% block styles %}
+<link rel="stylesheet" href="{{url_for('.static', filename='css/user.css')}}"> 
+{% endblock styles %}
+{% block scripts %} 
+{% endblock scripts %}
+
+{% block content %}
+
+<h1>{{current_user.username}}'s data</h1>
+<hr>
+<h3>Your generated QR Codes</h3>
+
+<div class="qr-container">
+{% if not user_qr_codes %}
+<p>You don't have any saved QRcodes. <a href="{{url_for('qrcode.generate')}}">Generate</a> a new QRcode to see it here.</p>
+{% endif %}
+
+{% for qrcode in user_qr_codes %}
+    <img src="{{url_for('static', filename=qrcode.storage_path)}}" alt="QRcode - {{qrcode.storage_path}}">
+{% endfor%}
+</div>
+
+<a href="{{url_for('home.homepage')}}">Home</a>
+
+{% endblock content %}

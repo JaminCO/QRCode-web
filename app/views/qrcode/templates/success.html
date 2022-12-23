@@ -19,6 +19,7 @@
     <h1 class="container">Download your QRCODE image</h1>
     <div class="container">
     <button><a href="{{url_for('static', filename=filename)}}" download><i fa-fa-download></i>DOWNLOAD</a></button>
+    <a href="{{url_for('home.homepage')}}">Home</a>
     <img class="img" style=" " src="{{url_for('static', filename=filename)}}">
     </div>
 </body>

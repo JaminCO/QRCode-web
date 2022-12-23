@@ -12,6 +12,7 @@ from .config import config
 from .views.home.routes import home_blueprint
 from .views.auth.routes import auth_blueprint
 from .views.qrcode.routes import qrcode_blueprint
+from .views.user.routes import user_blueprint
 
 # import python modules
 from datetime import datetime
@@ -49,6 +50,7 @@ def create_app(app_config):
     app.register_blueprint(home_blueprint)
     app.register_blueprint(auth_blueprint)
     app.register_blueprint(qrcode_blueprint)
+    app.register_blueprint(user_blueprint)
 
 
     # initialize extensions

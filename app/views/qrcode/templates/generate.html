@@ -1,21 +1,21 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>generate qrcode</title>
-</head>
-<body>
+{% extends "base.html" %}
+{% block title %} Generate QRcode {% endblock title %}
+{% block styles %}
+<link rel="stylesheet" href="{{url_for('.static', filename='css/home.css')}}"> 
+{% endblock styles %}
+{% block scripts %} 
+{% endblock scripts %}
+
+{% block content %}
     <div class="">
         <form action="" method="post">
             <legend> QR CODE DATA</legend>
             <p>Message :</p>
             <input type="text" name="message" id="message" placeholder="Message or URL">
             <p>   </p>
-            <br><button type="submit">SUBMIT</button>
+            <br><button class="btn btn-primary" type="submit">SUBMIT</button>
+            <br><br>
             <a href="{{url_for('home.homepage')}}">Home</a>
         </form>
     </div>
-</body>
-</html>
+{% endblock content %}
